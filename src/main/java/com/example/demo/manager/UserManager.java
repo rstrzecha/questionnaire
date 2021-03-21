@@ -1,29 +1,31 @@
 package com.example.demo.manager;
 
 import com.example.demo.dao.AnkietaRepo;
+import com.example.demo.dao.UserRepo;
 import com.example.demo.entity.Ankieta;
+import com.example.demo.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserManager {
 
-    private AnkietaRepo ankietaRepo;
+    private UserRepo userRepo;
 
     @Autowired
-    public UserManager(AnkietaRepo ankietaRepo) {this.ankietaRepo=ankietaRepo;}
+    public UserManager(UserRepo userRepo) {this.userRepo=userRepo;}
 
 
-    public Iterable<Ankieta> findAll(){
-        return ankietaRepo.findAll();
+    public Iterable<AppUser> findAll(){
+        return userRepo.findAll();
     }
 
-    public Ankieta save(Ankieta ankieta){
-        return ankietaRepo.save(ankieta);
+    public AppUser save(AppUser appUser){
+        return userRepo.save(appUser);
     }
 
     public void deleteById(Long id){
-        ankietaRepo.deleteById(id);
+        userRepo.deleteById(id);
     }
 
 
