@@ -1,8 +1,6 @@
 package com.example.demo.manager;
 
-import com.example.demo.dao.AnkietaRepo;
 import com.example.demo.dao.UserRepo;
-import com.example.demo.entity.Ankieta;
 import com.example.demo.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
