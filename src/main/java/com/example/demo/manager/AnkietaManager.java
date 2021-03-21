@@ -33,5 +33,6 @@ public class AnkietaManager {
     public void fillDB() {
         save(new Ankieta(1L,"Twoja opinia", "Podoba Ci sie nasze dzieło", "Tak", "Stanowcze raczej tak"));
         save(new Ankieta(2L,"Pytanie ogolne", "Jestes zadowolony z siebie", "Tak", "Stanowcze raczej tak"));
+        save(new Ankieta(3L,"Pytanie ogolne", "Jestes zadowolony z siebie", "Tak", "Stanowcze raczej tak"));
     }
 }
