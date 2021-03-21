@@ -2,7 +2,7 @@ package com.example.demo;
 
 
 
-import com.example.demo.dao.Ankieta;
+import com.example.demo.entity.Ankieta;
 import com.example.demo.manager.AnkietaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
