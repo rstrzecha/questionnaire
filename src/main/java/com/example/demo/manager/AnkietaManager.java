@@ -1,6 +1,6 @@
 package com.example.demo.manager;
 
-import com.example.demo.dao.Ankieta;
+import com.example.demo.entity.Ankieta;
 import com.example.demo.dao.AnkietaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
