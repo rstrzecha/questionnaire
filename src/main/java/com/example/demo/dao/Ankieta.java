@@ -13,7 +13,7 @@ public class Ankieta {
     @Id
 
     private Long id;
-    private String titel;
+    private String title;
     private String question;
     private String answers1;
     private String answers2;
@@ -22,9 +22,9 @@ public class Ankieta {
     public Ankieta() {
     }
 
-    public Ankieta(Long id, String titel, String question, String answers1, String answers2) {
+    public Ankieta(Long id, String title, String question, String answers1, String answers2) {
         this.id = id;
-        this.titel = titel;
+        this.title=title;
         this.question = question;
         this.answers1 = answers1;
         this.answers2 = answers2;
@@ -38,12 +38,12 @@ public class Ankieta {
         this.id = id;
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getQuestion() {
@@ -70,7 +70,3 @@ public class Ankieta {
         this.answers2 = answers2;
     }
 }
-//Ankieta powinna zawierac tytuł opis pytania odpowiedzi
-// (opcjonalnie) pytania otwarte data utworzenia(opcjonalnie)
-// data wygaśnięcialink (unikatowy link,
-// identyfikator ankiety; jakiś hash)
