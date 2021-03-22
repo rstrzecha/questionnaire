@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @Table

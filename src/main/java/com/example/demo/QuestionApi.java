@@ -2,7 +2,6 @@ package com.example.demo;
 
 
 import com.example.demo.entity.Question;
-import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
