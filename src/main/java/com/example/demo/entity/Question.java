@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "question")
+@Table
 public class Question implements Serializable {
 
 
@@ -17,15 +17,14 @@ public class Question implements Serializable {
     private boolean answer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "survey_id", nullable = false)
-    private Question question;
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
 
     public Question() {
     }
 
-    public Question(String text, Question question, boolean answer) {
+    public Question(String text, boolean answer) {
         this.text = text;
-        this.question = question;
         this.answer = answer;
     }
 

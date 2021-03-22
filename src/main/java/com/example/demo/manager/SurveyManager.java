@@ -8,33 +8,38 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SurveyManager {
 
-    private SurveyRepo surveyRepo;
 
-    @Autowired
-    public SurveyManager(SurveyRepo surveyRepo) {this.surveyRepo=surveyRepo;}
+        private SurveyRepo surveyRepo;
+
+        @Autowired
+        public SurveyManager(SurveyRepo surveyRepo) {this.surveyRepo=surveyRepo;}
 
 
-    public Iterable<Survey> findAll(){
-        return surveyRepo.findAll();
-    }
+        public Iterable<Survey> findAll(){
+            return surveyRepo.findAll();
+        }
 
-    public Survey save(Survey ankieta){
-        return surveyRepo.save(ankieta);
-    }
+        public Survey save(Survey survey){
+            return surveyRepo.save(survey);
+        }
 
-    public void deleteById(Long id){
-        surveyRepo.deleteById(id);
-    }
+        public void deleteById(Long id){
+            surveyRepo.deleteById(id);
+        }
+
+
 
 
     @EventListener(ApplicationReadyEvent.class)
     public void fillDB() {
-        save(new Survey("Kowalski", "Podoba Ci sie nasze dzieło", LocalDate.of(2020, 1, 8)));
-        save(new Survey("Nowak", "Jestes zadowolony z siebie", LocalDate.of(2021, 1, 8)));
-        save(new Survey("Brzeczyszczykiewicz", "Jestes zadowolony z siebie", LocalDate.of(2021,02,24)));
+        save(new Survey("Kowalski", "Pierwsza Ankieta", LocalDate.of(2020, 1, 8)));
+        save(new Survey("Nowak", "Ciekawostki", LocalDate.of(2021, 1, 8)));
+        save(new Survey("Brzeczyszczykiewicz", "Co dalej", LocalDate.of(2021,2,24)));
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("survey/question")
+@RequestMapping("question")
 public class QuestionApi {
 
     private QuestionManager questionManager;
@@ -32,7 +32,6 @@ public class QuestionApi {
     public void deleteQuestion(@RequestParam Long id){
         questionManager.deleteById(id);
     }
-
 
 
 

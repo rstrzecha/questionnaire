@@ -4,12 +4,11 @@ package com.example.demo.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 
 @Entity
- @Table(name = "survey")
+@Table
 public class Survey implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,7 @@ public class Survey implements Serializable {
     private LocalDate date;
 
     @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
-    private Set<Question> question;
+    private Set<Question> questions;
 
     public Survey() {
     }
