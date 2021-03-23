@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,9 +25,8 @@ public class Question implements Serializable {
     private Survey survey;
 
 
-    /*  @OneToMany(mappedBy = "questions", fetch = FetchType.LAZY)
-      private Set<Answer> answers;
-  */
+      @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+      private Set<Answer> answers = new HashSet<>();
     public Question() {
     }
 
@@ -35,6 +36,14 @@ public class Question implements Serializable {
         this.optionB = optionB;
         this.optionC = optionC;
         this.optionD = optionD;
+    }
+
+    public Set<Answer> getAnswer() {
+        return answers;
+    }
+
+    public void setAnswer(Set<Answer> answers) {
+        this.answers = answers;
     }
 
     public String getOptionA() {
@@ -77,5 +86,15 @@ public class Question implements Serializable {
         this.text = text;
     }
 
-
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", optionA='" + optionA + '\'' +
+                ", optionB='" + optionB + '\'' +
+                ", optionC='" + optionC + '\'' +
+                ", optionD='" + optionD + '\'' +
+                '}';
+    }
 }

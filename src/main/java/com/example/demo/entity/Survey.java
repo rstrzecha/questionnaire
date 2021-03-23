@@ -4,6 +4,7 @@ package com.example.demo.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -22,7 +23,7 @@ public class Survey implements Serializable {
 
 
     @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
-    private Set<Question> questions;
+    private Set<Question> questions= new HashSet<>();
 
     public Survey() {
     }
@@ -60,7 +61,25 @@ public class Survey implements Serializable {
         this.name = name;
     }
 
+    public Set<Question> getQuestion() {
+        return questions;
+    }
+
+    public void setQuestion(Set<Question> questions) {
+        this.questions = questions;
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

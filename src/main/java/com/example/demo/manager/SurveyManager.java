@@ -20,6 +20,11 @@ public class SurveyManager {
             return surveyRepo.findAll();
         }
 
+        public Iterable<Survey> findByName(String name){
+        return surveyRepo.findByName(name);
+    }
+
+
         public Survey save(Survey survey){
             return surveyRepo.save(survey);
         }

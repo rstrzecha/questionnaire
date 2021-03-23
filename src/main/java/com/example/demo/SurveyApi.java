@@ -19,8 +19,11 @@ public class SurveyApi {
     }
 
     @GetMapping("/all")
-    public Iterable<Survey> getAll(){
-        return surveyManager.findAll();
+    public Iterable<Survey> getAll(){return surveyManager.findAll();}
+
+    @GetMapping("/findByName")
+    public Iterable<Survey> findByName(String name){
+        return surveyManager.findByName(name);
     }
 
     @PostMapping
@@ -28,10 +31,10 @@ public class SurveyApi {
         return surveyManager.save(survey);
     }
 
-  /*  @DeleteMapping
+    @DeleteMapping
     public void deleteSurvey(@RequestParam Long id){
         surveyManager.deleteById(id);
-    }*/
+    }
 
 
 
