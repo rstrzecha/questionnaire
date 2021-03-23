@@ -8,11 +8,10 @@ public class Answer {
     @Id
     private Long id;
     private String Selection;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+   /* @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "question_id")
     private Question question;
-
+*/
     public Answer() {
 
     }

@@ -19,6 +19,8 @@ public class Survey implements Serializable {
     private String description;
     private LocalDate date;
 
+
+
     @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
     private Set<Question> questions;
 
@@ -45,7 +47,7 @@ public class Survey implements Serializable {
     }
 
     public LocalDate getDate() {
-        return date;
+        return LocalDate.now() ;
     }
 
 

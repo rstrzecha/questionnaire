@@ -28,10 +28,10 @@ public class SurveyApi {
         return surveyManager.save(survey);
     }
 
-    @DeleteMapping
+  /*  @DeleteMapping
     public void deleteSurvey(@RequestParam Long id){
         surveyManager.deleteById(id);
-    }
+    }*/
 
 
 

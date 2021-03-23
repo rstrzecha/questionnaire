@@ -21,12 +21,12 @@ public class AnswerApi {
         return answerManager.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Answer addAnswer(@RequestBody Answer answer){
         return answerManager.save(answer);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public void deleteAnswer(@RequestParam Long id){
         answerManager.deleteById(id);
     }
