@@ -5,6 +5,8 @@ import com.example.demo.dao.SurveyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class SurveyManager {
@@ -16,7 +18,7 @@ public class SurveyManager {
         public SurveyManager(SurveyRepo surveyRepo) {this.surveyRepo=surveyRepo;}
 
 
-        public Iterable<Survey> findAll(){
+        public List<Survey> findAll(){
             return surveyRepo.findAll();
         }
 
