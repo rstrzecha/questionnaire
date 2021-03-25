@@ -1,4 +1,5 @@
 <%@include file="../dynamic/head.jspf"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <body>
     
