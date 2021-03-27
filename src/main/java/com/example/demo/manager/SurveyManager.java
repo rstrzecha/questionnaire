@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,11 +23,12 @@ public class SurveyManager {
             return surveyRepo.findAll();
         }
 
-        public Iterable<Survey> findByName(String name){
+        public List<Survey> findByName(String name){
         return surveyRepo.findByName(name);
     }
 
 
+        public Optional<Survey> findById(Long id) { return surveyRepo.findById(id); }
         public Survey save(Survey survey){
             return surveyRepo.save(survey);
         }

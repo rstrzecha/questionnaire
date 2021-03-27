@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,7 +27,7 @@ public class Survey implements Serializable {
     @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)
     private Set<Question> questions= new HashSet<>();
 
-    public Survey() {
+    public Survey()  {
     }
 
     public Survey( String name, String description, LocalDate date){
@@ -33,6 +35,9 @@ public class Survey implements Serializable {
         this.description = description;
         this.date = date;
 
+    }
+    public Survey(Long id){
+        this.id=id;
     }
 
     public Long getId() {
