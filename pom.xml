@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+<!--	<packaging>war</packaging>-->
 
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -19,6 +19,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<!-- potrzebne do używania bazy danych, zapewnia wsparcie ORMa dla Spring Boota-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -29,6 +30,7 @@
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 
+		<!-- zapomniał omówić -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

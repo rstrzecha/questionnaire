@@ -14,7 +14,7 @@
 
     <c:forEach items="${survey}" var="query">
     <div class="qcontainer mt-sm-5 mx-auto">
-        <a href='<c:url value="/dosurvey"/>'>
+        <a href='<c:url value="/dosurvey/${query.id}"/>'>
             <div class="question ml-sm-5 pl-sm-5 pt-2">
                 <div class="py-2 h5" style="color: #ddd"><b>${query.description}</b></div>
             </div>

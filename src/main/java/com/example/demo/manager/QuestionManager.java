@@ -5,6 +5,7 @@ import com.example.demo.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -15,8 +16,7 @@ public class QuestionManager {
     @Autowired
     public QuestionManager( QuestionRepo questionRepo) {this.questionRepo=questionRepo;}
 
-
-    public Iterable<Question> findAll(){
+    public List<Question> findAll(){
         return questionRepo.findAll();
     }
 
