@@ -32,7 +32,6 @@ public class SurveyManager {
     }
 
 
-        public Optional<Survey> findById(Long id) { return surveyRepo.findById(id); }
         public Survey save(Survey survey){
             return surveyRepo.save(survey);
         }
