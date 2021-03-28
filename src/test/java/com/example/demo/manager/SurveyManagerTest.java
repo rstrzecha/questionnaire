@@ -30,15 +30,6 @@ class SurveyManagerTest {
         assertNotNull(survey.getId());
     }
 
- /*   @Test
-    public void testDeleteByIdSurvey(){
-        Survey survey= new Survey("Janusz2", "Pierwszy Test", LocalDate.of(2020,12,12));
-        surveyRepo.save(survey);
-
-        surveyRepo.deleteById(survey.getId());
-        Survey deleted=surveyRepo.findById(survey.getId()).get();   // TUTAJ JEST 'NO VALUE PRESENT'
-        assertNull(deleted);
-    }*/
 
     @Test
     public void testFindAll(){
@@ -51,5 +42,33 @@ class SurveyManagerTest {
         assertNotNull(surveys);
         assertEquals(2, surveys.size());
             }
+
+    @Test
+    public void testDeleteByIdSurvey(){
+        Survey survey= new Survey("Janusz2", "Pierwszy Test", LocalDate.of(2020,12,12));
+        surveyRepo.save(survey);
+
+        surveyRepo.deleteById(survey.getId());
+        List<Survey> surveys=surveyRepo.findAll();
+
+/*
+        Survey deleted=surveyRepo.findById(survey.getId()).get();   // TUTAJ JEST 'NO VALUE PRESENT'
+*/
+        assertEquals(0, surveys.size());
+    }
+
+    @Test
+    void findById(){
+
+        Survey survey= new Survey("Janusz2", "Test", LocalDate.of(2020,12,12));
+        surveyRepo.save(survey);
+
+        Survey tester=surveyRepo.findById(survey.getId()).get();
+
+        assertEquals("Janusz2", survey.getName());
+
+
+    }
+
 
 }
