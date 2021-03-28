@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Survey implements Serializable {
 
     private String name;
     private String description;
+    @CreatedDate
     private LocalDate date;
 
 
@@ -36,8 +38,14 @@ public class Survey implements Serializable {
         this.date = date;
 
     }
+
     public Survey(Long id){
         this.id=id;
+    }
+
+    public Survey(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public Long getId() {

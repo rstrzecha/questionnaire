@@ -10,6 +10,14 @@ import java.util.Set;
 public class Question implements Serializable {
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -20,6 +28,14 @@ public class Question implements Serializable {
     private String optionC;
     private String optionD;
 
+    public Survey getSurvey() {
+        return survey;
+    }
+
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "survey_id")
     private Survey survey;
@@ -28,6 +44,12 @@ public class Question implements Serializable {
       @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
       private Set<Answer> answers = new HashSet<>();
     public Question() {
+    }
+
+    public Question(String text, String primaryOption, String secondaryOption, String... otherOptions) {
+        this.text = text;
+        this.optionA = primaryOption;
+        this.optionB = secondaryOption;
     }
 
     public Question(String text, String optionA, String optionB, String optionC, String optionD) {
