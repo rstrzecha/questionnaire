@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.QuestionRepo;
 import com.example.demo.dao.SurveyRepo;
-import com.example.demo.entity.Question;
 import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import com.example.demo.manager.SurveyManager;
@@ -20,18 +19,8 @@ public class SurveyController {
     private SurveyRepo surveyRepo;
     private SurveyManager surveyManager;
 
-//    public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager) {
-//        this.surveyRepo = surveyRepo;
-//        this.surveyManager = surveyManager;
-//    }
-
     private QuestionRepo questionRepo;
     private QuestionManager questionManager;
-
-//    public SurveyController() {
-//        this.questionRepo = questionRepo;
-//        this.questionManager = questionManager;
-//    }
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo, QuestionManager questionManager) {
         this.surveyRepo = surveyRepo;
@@ -52,7 +41,7 @@ public class SurveyController {
         Survey survey = surveyManager.findById(Long.parseLong(id)).get();
 
         model.addAttribute("survey", survey);
-        model.addAttribute("questions", survey.getQuestion());
+        model.addAttribute("questions", survey.getQuestions());
         return "/survey/doSurvey";
     }
 

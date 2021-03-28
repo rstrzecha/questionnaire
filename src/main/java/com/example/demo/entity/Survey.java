@@ -61,11 +61,11 @@ public class Survey implements Serializable {
         this.name = name;
     }
 
-    public Set<Question> getQuestion() {
+    public Set<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestion(Set<Question> questions) {
+    public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
 
