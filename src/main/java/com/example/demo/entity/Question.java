@@ -38,7 +38,7 @@ public class Question implements Serializable {
         this.optionD = optionD;
     }
 
-    public Set<Answer> getAnswer() {
+    public Set<Answer> getAnswers() {
         return answers;
     }
 
