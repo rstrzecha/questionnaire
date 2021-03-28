@@ -17,14 +17,15 @@
             <div class="question ml-sm-5 pl-sm-5 pt-2">
                 <div class="py-2 h5"><b>${question.text}</b></div>
                 <div class="column ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3">
-                        <label class="options">${question.optionA} <input type="radio" name="question2"> <span
+                        <label class="options">${question.optionA} <input type="radio" name="question${question.id}">
+                            <span
                                 class="checkmark"></span> </label>
-                        <label class="options">${question.optionB} <input type="radio" name="question2"> <span
+                        <label class="options">${question.optionB} <input type="radio" name="question${question.id}"> <span
                                 class="checkmark"></span> </label>
 
-                        <label class="options">${question.optionC} <input type="radio" name="question2"> <span
+                        <label class="options">${question.optionC} <input type="radio" name="question${question.id}"> <span
                                 class="checkmark"></span> </label>
-                        <label class="options">${question.optionD} <input type="radio" name="question2"> <span
+                        <label class="options">${question.optionD} <input type="radio" name="question${question.id}"> <span
                                 class="checkmark"></span> </label>
                 </div>
             </div>

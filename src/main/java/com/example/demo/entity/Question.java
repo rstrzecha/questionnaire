@@ -21,12 +21,11 @@ public class Question implements Serializable {
     private String optionD;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "survey_id")
+    @JoinColumn/*(name = "survey_id")*/
     private Survey survey;
 
-
-      @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
-      private Set<Answer> answers = new HashSet<>();
+    //      @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
+//      private Set<Answer> answers = new HashSet<>();
     public Question() {
     }
 
@@ -38,12 +37,17 @@ public class Question implements Serializable {
         this.optionD = optionD;
     }
 
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
+//    public Set<Answer> getAnswers() {
+//        return answers;
+//    }
 
-    public void setAnswer(Set<Answer> answers) {
-        this.answers = answers;
+//    public void setAnswer(Set<Answer> answers) {
+//        this.answers = answers;
+//    }
+
+
+    public Long getId() {
+        return id;
     }
 
     public String getOptionA() {
