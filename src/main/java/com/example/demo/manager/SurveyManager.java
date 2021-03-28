@@ -27,11 +27,12 @@ public class SurveyManager {
             return surveyRepo.findById (id);
         }
 
-        public Iterable<Survey> findByName(String name){
+        public List<Survey> findByName(String name){
         return surveyRepo.findByName(name);
     }
 
 
+        public Optional<Survey> findById(Long id) { return surveyRepo.findById(id); }
         public Survey save(Survey survey){
             return surveyRepo.save(survey);
         }
