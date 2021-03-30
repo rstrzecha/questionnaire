@@ -5,6 +5,7 @@ import com.example.demo.dao.SurveyRepo;
 import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import com.example.demo.manager.SurveyManager;
+import com.example.demo.model.AnswerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,11 +23,15 @@ public class SurveyController {
     private QuestionRepo questionRepo;
     private QuestionManager questionManager;
 
-    public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo, QuestionManager questionManager) {
+    private AnswerForm answerForm;
+
+    public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
+                            QuestionManager questionManager/*, AnswerForm answerForm*/) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
         this.questionRepo = questionRepo;
         this.questionManager = questionManager;
+//        this.answerForm = answerForm;
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -42,6 +47,7 @@ public class SurveyController {
 
         model.addAttribute("survey", survey);
         model.addAttribute("questions", survey.getQuestions());
+        model.addAttribute("answerForm", answerForm);
         return "/survey/doSurvey";
     }
 
