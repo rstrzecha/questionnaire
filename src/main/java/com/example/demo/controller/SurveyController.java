@@ -8,9 +8,11 @@ import com.example.demo.manager.SurveyManager;
 import com.example.demo.model.AnswerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -50,5 +52,24 @@ public class SurveyController {
         model.addAttribute("answerForm", answerForm);
         return "/survey/doSurvey";
     }
+
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
+        System.out.println(answerForm);
+//        System.out.println(answerForm.getAnswers());
+//        List<Contact> contacts = contactForm.getContacts();
+
+//        if(null != contacts && contacts.size() > 0) {
+//            ContactController.contacts = contacts;
+//            for (Contact contact : contacts) {
+//                System.out.printf("%s \t %s \n", contact.getFirstname(), contact.getLastname());
+//            }
+//        }
+
+        return new ModelAndView("/index", "answerForm", answerForm);
+    }
+
 
 }

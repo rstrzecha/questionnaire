@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <form:form name="postSaveAnswers" method="post" action="" modelAttribute="answerForm">
+    <form:form name="postSaveAnswers" method="post" action="/save" modelAttribute="answerForm">
 
         <c:forEach items="${questions}" var="question" varStatus="status">
             <div class="container mt-sm-5 my-1">

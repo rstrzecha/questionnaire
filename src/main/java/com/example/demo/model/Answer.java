@@ -28,4 +28,12 @@ public class Answer {
     public void setSelection(String selection) {
         this.selection = selection;
     }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "questionId='" + questionId + '\'' +
+                ", selection='" + selection + '\'' +
+                '}';
+    }
 }
