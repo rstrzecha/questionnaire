@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class SurveyController {
     private AnswerForm answerForm;
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
-                            QuestionManager questionManager/*, AnswerForm answerForm*/) {
+                            QuestionManager questionManager, AnswerForm answerForm) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
         this.questionRepo = questionRepo;
         this.questionManager = questionManager;
-//        this.answerForm = answerForm;
+        this.answerForm = answerForm;
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -54,7 +55,6 @@ public class SurveyController {
     }
 
 
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
         System.out.println(answerForm);
@@ -71,5 +71,18 @@ public class SurveyController {
         return new ModelAndView("/index", "answerForm", answerForm);
     }
 
+    @RequestMapping(value = {"/editSurveys"}, method = RequestMethod.GET)
+    public String getSurveysToEdit(Model model) {
+        List<Survey> surveyList = surveyManager.findAll();
+        model.addAttribute("survey", surveyList);
+        return "/survey/surveysToEdit";
+    }
+
+
+    @RequestMapping(value = {"/saveSurvey"}, method = RequestMethod.POST)
+    public RedirectView saveAddTask(@ModelAttribute Survey newSurvey) {
+        surveyManager.save(newSurvey);
+        return new RedirectView("/editSurveys");
+    }
 
 }

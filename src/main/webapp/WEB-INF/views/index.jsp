@@ -20,6 +20,14 @@
         </div>
     </a>
 
+    <a href='<c:url value="/editSurveys"/>'>
+        <div class="container mt-sm-5 my-1">
+            <div class="question ml-sm-5 pl-sm-5 pt-2">
+                <div class="py-2 h5"><b>Edycja Ankiet</b></div>
+            </div>
+        </div>
+    </a>
+
     <div class="container mt-sm-5 my-1">
         <div class="question ml-sm-5 pl-sm-5 pt-2">
             <div class="py-2 h5"><b>Quiz</b></div>
