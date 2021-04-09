@@ -47,14 +47,27 @@
                 <div class="py-2 h4"><b>Tutaj możesz dodać nowe pytanie</b></div>
 
                 <div>
-                    <label for="Text">Treść pytania: </label>
+                    <div class="py-2 h6"><b>Podaj treść pytania: </b></div>
                     <input name="text" id="Text"/>
                 </div>
 
-<%--                <div>--%>
-<%--                    <label for="Name">Autor: </label>--%>
-<%--                    <input name="name" id="Name"/>--%>
-<%--                </div>--%>
+                <div class="py-2 h6"><b>Podaj opcje odpowiedzi</b></div>
+                <div>
+                    <label for="OptionA">Opcja A: </label>
+                    <input name="optionA" id="OptionA"/>
+                </div>
+                <div>
+                    <label for="OptionB">Opcja B: </label>
+                    <input name="optionB" id="OptionB"/>
+                </div>
+                <div>
+                    <label for="OptionC">Opcja C: </label>
+                    <input name="optionC" id="OptionC"/>
+                </div>
+                <div>
+                    <label for="OptionD">Opcja D: </label>
+                    <input name="optionD" id="OptionD"/>
+                </div>
 
 
                 <div class=""> <button class="btn btn-success">Dodaj pytanie</button> </div>

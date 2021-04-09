@@ -94,14 +94,6 @@ public class SurveyController {
         return "survey/editSurvey";
     }
 
-    @RequestMapping(value = {"/saveQuestion/{surveyId}"}, method = RequestMethod.POST)
-    public RedirectView saveAddQuestion(@ModelAttribute Question newQuestion, @PathVariable ("surveyId") Long surveyId) {
-        Optional<Survey> survey = surveyManager.findById(surveyId);
-        Question question = newQuestion;
 
-        survey.ifPresent(s -> question.setSurvey(s));
-        questionManager.save(question);
-        return new RedirectView("/editSurvey/{surveyId}");
-    }
 
 }
