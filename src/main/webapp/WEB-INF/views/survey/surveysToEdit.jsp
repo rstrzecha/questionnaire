@@ -14,13 +14,16 @@
     </div>
 
     <c:forEach items="${survey}" var="query">
-    <div class="qcontainer mt-sm-5 mx-auto">
-        <a href='<c:url value="/editSurvey/${query.id}"/>'>
-            <div class="question ml-sm-5 pl-sm-5 pt-2">
-                <div class="py-2 h5" style="color: #ddd"><b>${query.description}</b></div>
+        <form action="/deleteSurvey/${query.id}" method="post">
+            <div class="qcontainer mt-sm-5 mx-auto">
+                <a href='<c:url value="/editSurvey/${query.id}"/>'>
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5" style="color: #ddd"><b>${query.description}</b></div>
+                    </div>
+                </a>
+                <button  type="submit">Usuń ankietę</button>
             </div>
-        </a>
-    </div>
+        </form>
     </c:forEach>
 
 
@@ -45,8 +48,6 @@
             </div>
         </div>
     </form>
-
-
 
 
 <%@include file="../dynamic/js.jspf"%>

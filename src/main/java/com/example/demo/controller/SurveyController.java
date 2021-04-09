@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class SurveyController {
@@ -94,6 +95,18 @@ public class SurveyController {
         return "survey/editSurvey";
     }
 
+    @RequestMapping(value = {"/deleteSurvey/{surveyId}"}, method = RequestMethod.POST)
+    public RedirectView deleteSurvey(@ModelAttribute Question newQuestion,
+                                       @PathVariable("surveyId") Long surveyId) {
+
+        Survey surveyToDelete = surveyManager.findById(surveyId).get();
+        Set<Question> questions = surveyToDelete.getQuestions();
+        for (Question question: questions) {
+            questionManager.deleteById(question.getId());
+        }
+        surveyManager.deleteById(surveyId);
+        return new RedirectView("/surveysToEdit");
+    }
 
 
 }

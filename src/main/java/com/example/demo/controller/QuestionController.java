@@ -38,7 +38,6 @@ public class QuestionController {
     public RedirectView deleteQuestion(@ModelAttribute Question newQuestion,
                                        @PathVariable("questionId") Long questionId,
                                        @PathVariable("surveyId") Long surveyId) {
-        System.out.println(surveyId);
 
         questionManager.deleteById(questionId);
         return new RedirectView("/editSurvey/{surveyId}");
