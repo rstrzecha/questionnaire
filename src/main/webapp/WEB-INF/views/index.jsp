@@ -20,7 +20,7 @@
         </div>
     </a>
 
-    <a href='<c:url value="/editSurveys"/>'>
+    <a href='<c:url value="/surveysToEdit"/>'>
         <div class="container mt-sm-5 my-1">
             <div class="question ml-sm-5 pl-sm-5 pt-2">
                 <div class="py-2 h5"><b>Edycja Ankiet</b></div>

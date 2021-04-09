@@ -50,6 +50,14 @@ public class Question implements Serializable {
         return id;
     }
 
+    public Survey getSurvey() {
+        return survey;
+    }
+
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
+    }
+
     public String getOptionA() {
         return optionA;
     }

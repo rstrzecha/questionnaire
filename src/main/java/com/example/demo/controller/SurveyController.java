@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.QuestionRepo;
 import com.example.demo.dao.SurveyRepo;
+import com.example.demo.entity.Question;
 import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import com.example.demo.manager.SurveyManager;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class SurveyController {
@@ -54,7 +56,6 @@ public class SurveyController {
         return "/survey/doSurvey";
     }
 
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
         System.out.println(answerForm);
@@ -71,18 +72,36 @@ public class SurveyController {
         return new ModelAndView("/index", "answerForm", answerForm);
     }
 
-    @RequestMapping(value = {"/editSurveys"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/surveysToEdit"}, method = RequestMethod.GET)
     public String getSurveysToEdit(Model model) {
         List<Survey> surveyList = surveyManager.findAll();
         model.addAttribute("survey", surveyList);
         return "/survey/surveysToEdit";
     }
 
-
     @RequestMapping(value = {"/saveSurvey"}, method = RequestMethod.POST)
-    public RedirectView saveAddTask(@ModelAttribute Survey newSurvey) {
+    public RedirectView saveAddSurvey(@ModelAttribute Survey newSurvey) {
         surveyManager.save(newSurvey);
-        return new RedirectView("/editSurveys");
+        return new RedirectView("/surveysToEdit");
+    }
+
+    @RequestMapping(value = {"/editSurvey/{id}"}, method = RequestMethod.GET)
+    public String getEditTasks(Model model, @PathVariable String id) {
+        Survey survey = surveyManager.findById(Long.parseLong(id)).get();
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
+        return "survey/editSurvey";
+    }
+
+    @RequestMapping(value = {"/saveQuestion/{surveyId}"}, method = RequestMethod.POST)
+    public RedirectView saveAddQuestion(@ModelAttribute Question newQuestion, @PathVariable ("surveyId") Long surveyId) {
+        Optional<Survey> survey = surveyManager.findById(surveyId);
+        Question question = newQuestion;
+
+        survey.ifPresent(s -> question.setSurvey(s));
+        questionManager.save(question);
+        return new RedirectView("/editSurvey/{surveyId}");
     }
 
 }
