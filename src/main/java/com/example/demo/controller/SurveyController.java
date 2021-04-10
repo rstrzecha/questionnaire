@@ -63,22 +63,24 @@ public class SurveyController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
-       // System.out.println(answerForm);
-       // System.out.println(answerForm.getAnswers());
+        // System.out.println(answerForm);
+        // System.out.println(answerForm.getAnswers());
         List<Answer> answers = answerForm.getAnswers();
 
 
-
         if (null != answers && answers.size() > 0) {
-        //  SurveyController.answers = answers;
-          //  SurveyController.answerForm = answerForm;
+            //  SurveyController.answers = answers;
+            //  SurveyController.answerForm = answerForm;
             for (Answer answer : answers) {
                 System.out.printf("%s \t %s \n", answer.getQuestionId(),
                         answer.getSelection());
 
-               //answer.setSelection(answer.getSelection());
+                //answer.setSelection(answer.getSelection());
             }
         }
+        return new ModelAndView("/index", "answerForm",
+                answerForm);
+    }
 
     @RequestMapping(value = {"/surveysToEdit"}, method = RequestMethod.GET)
     public String getSurveysToEdit(Model model) {
@@ -113,11 +115,5 @@ public class SurveyController {
         }
         surveyManager.deleteById(surveyId);
         return new RedirectView("/surveysToEdit");
-    }
-
-        return new ModelAndView("/index", "answerForm",
-                answerForm);
-
-
     }
 }
