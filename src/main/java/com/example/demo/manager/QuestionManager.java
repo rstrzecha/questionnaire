@@ -47,5 +47,5 @@ public class QuestionManager {
                 break;
         }
 
-        questionRepo.setSelection(selection); }
+        questionRepo.save(question); }
 }

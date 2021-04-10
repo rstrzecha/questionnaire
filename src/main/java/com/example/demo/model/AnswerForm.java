@@ -1,14 +1,13 @@
 package com.example.demo.model;
 
 
-import com.example.demo.manager.QuestionManager;
-import org.springframework.stereotype.Service;
+import com.example.demo.dto.Answer;
 
 import java.util.List;
 
-@Service
+
 public class AnswerForm {
-    QuestionManager questionManager;
+
 
     private List<Answer> answers;
 
@@ -16,10 +15,6 @@ public class AnswerForm {
         return answers;
     }
 
-   public void setSelection(String selection) {
-        questionManager.setSelection(selection);
-
-    }
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface QuestionRepo extends JpaRepository<Question, Long> {
 
 
-    void setSelection(String selection);
+   // void setSelection(String selection);
 
 
 
