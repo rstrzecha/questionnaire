@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Survey implements Serializable {
 
     private String name;
     private String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
 

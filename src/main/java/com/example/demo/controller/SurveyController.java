@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.QuestionRepo;
 import com.example.demo.dao.SurveyRepo;
+import com.example.demo.entity.Question;
 import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import com.example.demo.manager.SurveyManager;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class SurveyController {
@@ -28,12 +32,12 @@ public class SurveyController {
     private AnswerForm answerForm;
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
-                            QuestionManager questionManager/*, AnswerForm answerForm*/) {
+                            QuestionManager questionManager, AnswerForm answerForm) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
         this.questionRepo = questionRepo;
         this.questionManager = questionManager;
-//        this.answerForm = answerForm;
+        this.answerForm = answerForm;
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -53,8 +57,6 @@ public class SurveyController {
         return "/survey/doSurvey";
     }
 
-
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
         System.out.println(answerForm);
@@ -69,6 +71,41 @@ public class SurveyController {
 //        }
 
         return new ModelAndView("/index", "answerForm", answerForm);
+    }
+
+    @RequestMapping(value = {"/surveysToEdit"}, method = RequestMethod.GET)
+    public String getSurveysToEdit(Model model) {
+        List<Survey> surveyList = surveyManager.findAll();
+        model.addAttribute("survey", surveyList);
+        return "/survey/surveysToEdit";
+    }
+
+    @RequestMapping(value = {"/saveSurvey"}, method = RequestMethod.POST)
+    public RedirectView saveAddSurvey(@ModelAttribute Survey newSurvey) {
+        surveyManager.save(newSurvey);
+        return new RedirectView("/surveysToEdit");
+    }
+
+    @RequestMapping(value = {"/editSurvey/{id}"}, method = RequestMethod.GET)
+    public String getEditTasks(Model model, @PathVariable String id) {
+        Survey survey = surveyManager.findById(Long.parseLong(id)).get();
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
+        return "survey/editSurvey";
+    }
+
+    @RequestMapping(value = {"/deleteSurvey/{surveyId}"}, method = RequestMethod.POST)
+    public RedirectView deleteSurvey(@ModelAttribute Question newQuestion,
+                                       @PathVariable("surveyId") Long surveyId) {
+
+        Survey surveyToDelete = surveyManager.findById(surveyId).get();
+        Set<Question> questions = surveyToDelete.getQuestions();
+        for (Question question: questions) {
+            questionManager.deleteById(question.getId());
+        }
+        surveyManager.deleteById(surveyId);
+        return new RedirectView("/surveysToEdit");
     }
 
 
