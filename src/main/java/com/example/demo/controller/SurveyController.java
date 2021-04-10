@@ -63,22 +63,14 @@ public class SurveyController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
-        // System.out.println(answerForm);
-        // System.out.println(answerForm.getAnswers());
         List<Answer> answers = answerForm.getAnswers();
 
-
         if (null != answers && answers.size() > 0) {
-            //  SurveyController.answers = answers;
-            //  SurveyController.answerForm = answerForm;
-            Question question;
             for (Answer answer : answers) {
                 System.out.printf("%s \t %s \n", answer.getQuestionId(),
                         answer.getSelection());
 
-                    question = questionRepo.findById(Long.parseLong(answer.getQuestionId())).get();
                     questionManager.setSelection(Long.parseLong(answer.getQuestionId()), answer.getSelection());
-                    questionManager.save(question);
             }
         }
         return new ModelAndView("/index", "answerForm",
