@@ -12,6 +12,7 @@ import java.util.List;
 public class QuestionManager {
 
     private QuestionRepo questionRepo;
+    private Question question;
 
     @Autowired
     public QuestionManager( QuestionRepo questionRepo) {this.questionRepo=questionRepo;}
@@ -28,5 +29,23 @@ public class QuestionManager {
         questionRepo.deleteById(id);
     }
 
+    //public void setById(Long id) {  questionRepo.setById(id); }
 
+    public void setSelection(String selection) {
+        switch (selection.charAt(0)){
+            case 'A':
+                question.setCountOptionA(question.getCountOptionA()+1);
+                break;
+            case 'B':
+                question.setCountOptionB(question.getCountOptionB()+1);
+                break;
+            case 'C':
+                question.setCountOptionC(question.getCountOptionC()+1);
+                break;
+            case 'D':
+                question.setCountOptionD(question.getCountOptionD()+1);
+                break;
+        }
+
+        questionRepo.setSelection(selection); }
 }
