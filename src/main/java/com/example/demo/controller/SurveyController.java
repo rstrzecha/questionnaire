@@ -71,11 +71,14 @@ public class SurveyController {
         if (null != answers && answers.size() > 0) {
             //  SurveyController.answers = answers;
             //  SurveyController.answerForm = answerForm;
+            Question question;
             for (Answer answer : answers) {
                 System.out.printf("%s \t %s \n", answer.getQuestionId(),
                         answer.getSelection());
 
-                //answer.setSelection(answer.getSelection());
+                    question = questionRepo.findById(Long.parseLong(answer.getQuestionId())).get();
+                    questionManager.setSelection(Long.parseLong(answer.getQuestionId()), answer.getSelection());
+                    questionManager.save(question);
             }
         }
         return new ModelAndView("/index", "answerForm",
