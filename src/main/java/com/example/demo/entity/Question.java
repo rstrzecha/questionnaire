@@ -2,8 +2,6 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table
@@ -19,6 +17,47 @@ public class Question implements Serializable {
     private String optionB;
     private String optionC;
     private String optionD;
+
+    private int countOptionA;
+    private int countOptionB;
+    private int countOptionC;
+    private int countOptionD;
+
+    public int getCountOptionA() {
+        return countOptionA;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCountOptionA(int countOptionA) {
+        this.countOptionA = countOptionA;
+    }
+
+    public int getCountOptionB() {
+        return countOptionB;
+    }
+
+    public void setCountOptionB(int countOptionB) {
+        this.countOptionB = countOptionB;
+    }
+
+    public int getCountOptionC() {
+        return countOptionC;
+    }
+
+    public void setCountOptionC(int countOptionC) {
+        this.countOptionC = countOptionC;
+    }
+
+    public int getCountOptionD() {
+        return countOptionD;
+    }
+
+    public void setCountOptionD(int countOptionD) {
+        this.countOptionD = countOptionD;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn/*(name = "survey_id")*/

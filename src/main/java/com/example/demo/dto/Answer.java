@@ -1,9 +1,13 @@
-package com.example.demo.model;
+package com.example.demo.dto;
+
+
+
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class Answer {
+
 
     private String questionId;
     private String selection;
@@ -28,8 +32,7 @@ public class Answer {
         return selection;
     }
 
-    public void setSelection(String selection) {
-        this.selection = selection;
+    public void setSelection(String selection) { this.selection= selection;
     }
 
     @Override

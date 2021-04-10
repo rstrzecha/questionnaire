@@ -6,6 +6,7 @@ import com.example.demo.entity.Question;
 import com.example.demo.entity.Survey;
 import com.example.demo.manager.QuestionManager;
 import com.example.demo.manager.SurveyManager;
+import com.example.demo.dto.Answer;
 import com.example.demo.model.AnswerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,15 +30,17 @@ public class SurveyController {
     private QuestionRepo questionRepo;
     private QuestionManager questionManager;
 
-    private AnswerForm answerForm;
+    private  AnswerForm answerForm;
+   // private static List<Answer> answers = new ArrayList<Answer>();
+
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
-                            QuestionManager questionManager, AnswerForm answerForm) {
+                            QuestionManager questionManager) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
-        this.questionRepo = questionRepo;
-        this.questionManager = questionManager;
-        this.answerForm = answerForm;
+       this.questionRepo = questionRepo;
+       this.questionManager = questionManager;
+
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -57,21 +60,25 @@ public class SurveyController {
         return "/survey/doSurvey";
     }
 
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
-        System.out.println(answerForm);
-//        System.out.println(answerForm.getAnswers());
-//        List<Contact> contacts = contactForm.getContacts();
+       // System.out.println(answerForm);
+       // System.out.println(answerForm.getAnswers());
+        List<Answer> answers = answerForm.getAnswers();
 
-//        if(null != contacts && contacts.size() > 0) {
-//            ContactController.contacts = contacts;
-//            for (Contact contact : contacts) {
-//                System.out.printf("%s \t %s \n", contact.getFirstname(), contact.getLastname());
-//            }
-//        }
 
-        return new ModelAndView("/index", "answerForm", answerForm);
-    }
+
+        if (null != answers && answers.size() > 0) {
+        //  SurveyController.answers = answers;
+          //  SurveyController.answerForm = answerForm;
+            for (Answer answer : answers) {
+                System.out.printf("%s \t %s \n", answer.getQuestionId(),
+                        answer.getSelection());
+
+               //answer.setSelection(answer.getSelection());
+            }
+        }
 
     @RequestMapping(value = {"/surveysToEdit"}, method = RequestMethod.GET)
     public String getSurveysToEdit(Model model) {
@@ -108,5 +115,9 @@ public class SurveyController {
         return new RedirectView("/surveysToEdit");
     }
 
+        return new ModelAndView("/index", "answerForm",
+                answerForm);
 
+
+    }
 }
