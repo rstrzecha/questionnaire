@@ -30,7 +30,7 @@ public class SurveyController {
     private QuestionRepo questionRepo;
     private QuestionManager questionManager;
 
-    private  AnswerForm answerForm;
+//    private  AnswerForm answerForm;
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
                             QuestionManager questionManager) {
@@ -53,7 +53,7 @@ public class SurveyController {
 
         model.addAttribute("survey", survey);
         model.addAttribute("questions", survey.getQuestions());
-        model.addAttribute("answerForm", answerForm);
+//        model.addAttribute("answerForm", answerForm);
         return "/survey/doSurvey";
     }
 
