@@ -31,16 +31,13 @@ public class SurveyController {
     private QuestionManager questionManager;
 
     private  AnswerForm answerForm;
-   // private static List<Answer> answers = new ArrayList<Answer>();
-
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
                             QuestionManager questionManager) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
-       this.questionRepo = questionRepo;
-       this.questionManager = questionManager;
-
+        this.questionRepo = questionRepo;
+        this.questionManager = questionManager;
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -60,22 +57,16 @@ public class SurveyController {
         return "/survey/doSurvey";
     }
 
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
-        // System.out.println(answerForm);
-        // System.out.println(answerForm.getAnswers());
         List<Answer> answers = answerForm.getAnswers();
 
-
         if (null != answers && answers.size() > 0) {
-            //  SurveyController.answers = answers;
-            //  SurveyController.answerForm = answerForm;
             for (Answer answer : answers) {
                 System.out.printf("%s \t %s \n", answer.getQuestionId(),
                         answer.getSelection());
 
-                //answer.setSelection(answer.getSelection());
+                    questionManager.setSelection(Long.parseLong(answer.getQuestionId()), answer.getSelection());
             }
         }
         return new ModelAndView("/index", "answerForm",
@@ -115,5 +106,21 @@ public class SurveyController {
         }
         surveyManager.deleteById(surveyId);
         return new RedirectView("/surveysToEdit");
+    }
+
+    @RequestMapping(value = {"/surveysList"}, method = RequestMethod.GET)
+    public String getStatsSurveys(Model model) {
+        List<Survey> surveyList = surveyManager.findAll();
+        model.addAttribute("survey", surveyList);
+        return "/results/surveysList";
+    }
+
+    @RequestMapping(value = {"/surveyStats/{id}"}, method = RequestMethod.GET)
+    public String getSurveyStats(Model model, @PathVariable String id) {
+        Survey survey = surveyManager.findById(Long.parseLong(id)).get();
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
+        return "/results/surveyStats";
     }
 }

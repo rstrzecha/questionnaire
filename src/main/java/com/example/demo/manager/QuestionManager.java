@@ -21,8 +21,9 @@ public class QuestionManager {
         return questionRepo.findAll();
     }
 
-    public Question save(Question question){
-        return questionRepo.save(question);
+    public /*Question*/ void save(Question question){
+//        return questionRepo.save(question);
+        questionRepo.save(question);
     }
 
     public void deleteById(Long id){
@@ -31,7 +32,8 @@ public class QuestionManager {
 
     //public void setById(Long id) {  questionRepo.setById(id); }
 
-    public void setSelection(String selection) {
+    public void setSelection(Long givenId, String selection) {
+        question = questionRepo.findById(givenId).get();
         switch (selection.charAt(0)){
             case 'A':
                 question.setCountOptionA(question.getCountOptionA()+1);
