@@ -36,9 +36,8 @@ public class SurveyController {
                             QuestionManager questionManager) {
         this.surveyRepo = surveyRepo;
         this.surveyManager = surveyManager;
-       this.questionRepo = questionRepo;
-       this.questionManager = questionManager;
-
+        this.questionRepo = questionRepo;
+        this.questionManager = questionManager;
     }
 
     @RequestMapping(value = {"/surveys"}, method = RequestMethod.GET)
@@ -57,7 +56,6 @@ public class SurveyController {
         model.addAttribute("answerForm", answerForm);
         return "/survey/doSurvey";
     }
-
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("answerForm") AnswerForm answerForm) {
@@ -125,5 +123,4 @@ public class SurveyController {
         model.addAttribute("questions", survey.getQuestions());
         return "/results/surveyStats";
     }
-
 }
