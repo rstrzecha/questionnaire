@@ -111,4 +111,22 @@ public class SurveyController {
         surveyManager.deleteById(surveyId);
         return new RedirectView("/surveysToEdit");
     }
+
+    @RequestMapping(value = {"/surveysList"}, method = RequestMethod.GET)
+    public String getStatsSurveys(Model model) {
+        List<Survey> surveyList = surveyManager.findAll();
+        model.addAttribute("survey", surveyList);
+        return "/results/surveysList";
+    }
+
+    @RequestMapping(value = {"/surveyStats/{id}"}, method = RequestMethod.GET)
+    public String getSurveyStats(Model model, @PathVariable String id) {
+        Survey survey = surveyManager.findById(Long.parseLong(id)).get();
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("questions", survey.getQuestions());
+        model.addAttribute("answerForm", answerForm);
+        return "/results/surveyStats";
+    }
+
 }
