@@ -31,8 +31,6 @@ public class SurveyController {
     private QuestionManager questionManager;
 
     private  AnswerForm answerForm;
-   // private static List<Answer> answers = new ArrayList<Answer>();
-
 
     public SurveyController(SurveyRepo surveyRepo, SurveyManager surveyManager, QuestionRepo questionRepo,
                             QuestionManager questionManager) {
@@ -125,7 +123,6 @@ public class SurveyController {
 
         model.addAttribute("survey", survey);
         model.addAttribute("questions", survey.getQuestions());
-        model.addAttribute("answerForm", answerForm);
         return "/results/surveyStats";
     }
 
