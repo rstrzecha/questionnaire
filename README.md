@@ -1,4 +1,1 @@
-# 
-chyba działa 
-
-Test 1
+Serwis umożliwiający generowanie ankiet, odpowiadanie na ankiety oraz prezentację statystyk
